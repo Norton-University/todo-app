@@ -63,6 +63,7 @@ const onDelete = (id: number) => {
         <div class="py-12">
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4 text-4xl">
+                    <h3 class="text-center p-3">Todo List</h3>
                     <!--Todos form-->
                     <div>
 
