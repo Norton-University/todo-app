@@ -17,10 +17,13 @@ use Inertia\Inertia;
 */
 
 
-Route::get('/', [\App\Http\Controllers\TodoController::class, 'index'])->name('todo.index');
-Route::get('/dashboard', [\App\Http\Controllers\TodoController::class, 'index'])->name('dashboard');
-Route::put('/todos/{todo}/toggle-completed', [\App\Http\Controllers\TodoController::class, 'toggleCompleted'])->name('todos.toggle');
-Route::resource('todos', \App\Http\Controllers\TodoController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [\App\Http\Controllers\TodoController::class, 'index'])->name('todo.index');
+    Route::get('/dashboard', [\App\Http\Controllers\TodoController::class, 'index'])->name('dashboard');
+    Route::put('/todos/{todo}/toggle-completed', [\App\Http\Controllers\TodoController::class, 'toggleCompleted'])->name('todos.toggle');
+    Route::resource('todos', \App\Http\Controllers\TodoController::class);
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

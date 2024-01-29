@@ -18,7 +18,7 @@ class TodoController extends Controller
             ->when(!$request->input('all-dates'), function ($query) {
                 $query->whereDate('created_at', today());
             })
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('created_at')->get();
         return Inertia::render('Dashboard', compact('todos'));
     }
 
@@ -67,5 +67,4 @@ class TodoController extends Controller
         $todo->delete();
         return redirect()->back()->with('message', 'Todo Deleted Successfully');
     }
-
 }
